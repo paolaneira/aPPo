@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 import { colors } from "../theme";
+import CenterMessage from "../components/CenterMessage";
 
 export default class Cities extends React.Component {
   static navigationOptions = {
@@ -30,8 +31,10 @@ export default class Cities extends React.Component {
     return (
       <ScrollView>
         <View>
+          {!cities.length && <CenterMessage message="No Cities" />}
+
           {cities.map((city, index) => (
-            <View>
+            <View id={city.id}>
               <TouchableWithoutFeedback onPress={() => this.viewCity(city)}>
                 <View style={styles.cityContainer}>
                   <Text style={styles.city}>{city.city}</Text>

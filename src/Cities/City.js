@@ -9,6 +9,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import { colors } from "../theme";
+import CenterMessage from "../components/CenterMessage";
 
 export default class City extends React.Component {
   static navigationOptions = props => {
@@ -52,18 +53,18 @@ export default class City extends React.Component {
       [key]: value
     });
   };
+
   render() {
     const { city } = this.props.navigation.state.params;
-    console.log("CITY", city);
     return (
       <View style={{ flex: 1 }}>
-        {city.locations.map((location, index) => {
+        {!city.locations.length && <CenterMessage message="No Locations" />}
+        {city.locations.map((location, index) => (
           <View style={styles.locationContainer}>
             <Text style={styles.name}>{location.name}</Text>
-            <Text style={styles.info}>>{location.info}</Text>
-          </View>;
-        })}
-
+            <Text style={styles.info}>{location.info}</Text>
+          </View>
+        ))}
         <TextInput
           style={styles.input}
           placeholder="Location name"
@@ -110,16 +111,16 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: colors.primary,
     width: "100%",
-    bottom: 204,
+    bottom: 104,
     left: 0,
     color: "white"
   },
   input2: {
-    bottom: 154
+    bottom: 54
   },
   buttonContainer: {
     position: "absolute",
-    bottom: 100,
+    bottom: 0,
     left: 0,
     width: "100%"
   },

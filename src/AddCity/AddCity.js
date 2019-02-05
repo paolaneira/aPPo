@@ -22,7 +22,6 @@ export default class AddCity extends React.Component {
   };
 
   submit = () => {
-    console.log("HERE");
     if (this.state.city === "" || this.state.country === "") return;
     const city = {
       city: this.state.city,
@@ -44,7 +43,6 @@ export default class AddCity extends React.Component {
   };
 
   render() {
-    console.log("PROPS", this.props, "STATE", this.state);
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>Cities App </Text>
