@@ -21,16 +21,50 @@ export default class AddCity extends React.Component {
     });
   };
 
-  submit = () => {};
+  submit = () => {
+    console.log("HERE");
+    if (this.state.city === "" || this.state.country === "") return;
+    const city = {
+      city: this.state.city,
+      country: this.state.country,
+      locations: [],
+      id: uuidV4()
+    };
+    // console.log("CITY", city);
+    this.props.screenProps.addCity(city);
+    this.setState(
+      {
+        city: "",
+        country: ""
+      },
+      () => {
+        this.props.navigation.navigate("Cities");
+      }
+    );
+  };
 
   render() {
+    console.log("PROPS", this.props, "STATE", this.state);
     return (
       <View style={styles.container}>
+        <Text style={styles.heading}>Cities App </Text>
         <TextInput
           style={styles.input}
-          onChangeText={val => this.onChangeText()}
+          placeholder="City name"
+          value={this.state.city}
+          onChangeText={val => this.onChangeText("city", val)}
         />
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          placeholder="Country name"
+          value={this.state.country}
+          onChangeText={val => this.onChangeText("country", val)}
+        />
+        <TouchableOpacity onPress={this.submit}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}> Add City </Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -41,14 +75,27 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     margin: 10,
     paddingHorizontal: 8,
-    height: 10
+    height: 50
   },
-  button: {},
-  buttonText: {},
+  button: {
+    height: 50,
+    backgroundColor: "#666",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10
+  },
+  buttonText: {
+    color: "white"
+  },
   container: {
     backgroundColor: colors.primary,
     flex: 1,
     justifyContent: "center"
   },
-  heading: {}
+  heading: {
+    fontSize: 40,
+    textAlign: "center",
+    margin: 10,
+    color: "white"
+  }
 });
