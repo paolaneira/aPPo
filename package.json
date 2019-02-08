@@ -1,20 +1,51 @@
 {
+  "name": "appo",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">= 7.0.0"
+  },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "start-server": "nodemon server",
+    "seed": "node seed.js",
+    "start:dev": "nodemon server"
   },
   "dependencies": {
     "expo": "^32.0.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-navigation": "^3.1.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "@google-cloud/vision": "^0.23.0",
+    "aws-sdk": "^2.361.0",
+    "axios": "^0.18.0",
+    "chalk": "^2.4.1",
+    "compression": "^1.7.3",
+    "connect-session-sequelize": "^6.0.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "file-upload": "0.0.0",
+    "fs": "0.0.1-security",
+    "helmet": "^3.15.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "multer-s3": "^2.9.0",
+    "nodemon": "^1.18.6",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^1.0.0",
+    "pg": "^7.6.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.41.2"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.0.0",
+    "node": "11.2.0"
   },
   "private": true
 }

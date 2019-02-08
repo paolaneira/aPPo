@@ -34,7 +34,7 @@ export default class Cities extends React.Component {
           {!cities.length && <CenterMessage message="No Cities" />}
 
           {cities.map((city, index) => (
-            <View id={city.id}>
+            <View key={city.id}>
               <TouchableWithoutFeedback onPress={() => this.viewCity(city)}>
                 <View style={styles.cityContainer}>
                   <Text style={styles.city}>{city.city}</Text>

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { colors } from "../theme";
 import CenterMessage from "../components/CenterMessage";
+import { KeyboardAvoidingView } from "react-native";
 
 export default class City extends React.Component {
   static navigationOptions = props => {
@@ -60,39 +61,53 @@ export default class City extends React.Component {
       <View style={{ flex: 1 }}>
         {!city.locations.length && <CenterMessage message="No Locations" />}
         {city.locations.map((location, index) => (
-          <View style={styles.locationContainer}>
+          <View key={location.index} style={styles.locationContainer}>
             <Text style={styles.name}>{location.name}</Text>
             <Text style={styles.info}>{location.info}</Text>
           </View>
         ))}
-        <TextInput
-          style={styles.input}
-          placeholder="Location name"
-          placeholderTextColor="white"
-          value={this.state.name}
-          onChangeText={val => this.onChangeText("name", val)}
-        />
-        <TextInput
-          style={[styles.input, styles.input2]}
-          placeholder="Location info"
-          placeholderTextColor="white"
-          value={this.state.info}
-          onChangeText={val => this.onChangeText("info", val)}
-        />
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={this.addLocation}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}> Add Location </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <TextInput />
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior="position"
+          enabled
+        >
+          <TextInput
+            style={styles.input}
+            placeholder="Location name"
+            placeholderTextColor="white"
+            value={this.state.name}
+            onChangeText={val => this.onChangeText("name", val)}
+          />
+          <TextInput
+            style={[styles.input, styles.input2]}
+            placeholder="Location info"
+            placeholderTextColor="white"
+            value={this.state.info}
+            onChangeText={val => this.onChangeText("info", val)}
+          />
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={this.addLocation}>
+              <View style={styles.button}>
+                <Text style={styles.buttonText}> Add Location </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <TextInput />
+        </KeyboardAvoidingView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: "#d6d7da",
+    position: "absolute",
+    bottom: 0,
+    width: "100%"
+  },
   locationContainer: {
     padding: 10,
     borderBottomColor: colors.primary,
@@ -112,7 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     width: "100%",
     bottom: 104,
-    left: 0,
+    // left: 0,
     color: "white"
   },
   input2: {
